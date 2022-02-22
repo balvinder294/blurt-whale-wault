@@ -1,0 +1,35 @@
+{
+  "name": "Blurt WhaleVault",
+  "version": "0.1.1",
+  "description": "Blurt Key Chain Extension",
+  "permissions": ["activeTab", "storage", "tabs", "https://*/*", "notifications", "idle"],
+  "browser_action": {
+    "default_popup": "html/popup.html",
+    "default_icon": "images/blurtlogo.png",
+    "default_title": "Blurt WhaleVault :: locked"
+  },
+  "icons": {                   
+    "128": "images/blurtlogo.png"
+  },
+  "background": {
+    "scripts": [
+      "vendor/whale-1.0.0.js",
+      "vendor/eosjs-api.js",
+      "vendor/eosjs-jsonrpc.js",
+      "vendor/eosjs-jssig.js",
+      "vendor/eosjs-numeric.js",
+      "js/encrypt.js",
+      "js/background.js"
+    ],
+    "persistent": true
+  },
+  "web_accessible_resources": ["/images/icons8-safe-50.png", "js/whalevault.js"],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://0.0.0.0:1337/*", "http://*/*"],
+      "js": ["vendor/jquery.js", "js/web_interface.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "manifest_version": 2
+}

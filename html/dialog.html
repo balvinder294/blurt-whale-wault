@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>WhaleVault</title>
+    <link rel="stylesheet" type="text/css" href="../css/dialog.css">
+</head>
+
+<body>
+    <div id="tx-pending"></div>
+        <div class="modal-content">
+            <h2 id="dialog_header"></h2>
+            <h3 class="dialog-message" id="dialog_message" style="display: none;"></h3>
+            <div class="modal-body-error" style="display: none;">
+                <div class="error" id="error_dialog"></div>
+                <button id="error-ok">Ok</button>
+                <div class="unlock">
+                    <div class="input_container">
+                        <input id="unlock-dialog" type="password" />
+                        <img src="../images/lock.png" class="input_img" />
+                    </div>
+                    <button id="yes-unlock">Unlock</button>
+                    <button id="no-unlock">Cancel</button>
+                    <div id="error-mk"></div>
+                </div>
+            </div>
+
+            <input id="restore_file" type="file" accept=".dat" style="display:none;"></input>
+
+            <div id="tx_loading" style="display: none;">
+            </div>
+
+            <div id="modal-body-msg" style="display: none;">
+
+                <div class="custom-select usernames" id="custom_select_keys" style="display:none;">
+                  <select>
+                  </select>
+                </div>
+
+                <div class="msg-data">
+                    <h3 class="encryptMemo decryptMemo signBuffer" id="message_title">Message</h3>
+                    <div class="encryptMemo decryptMemo signBuffer" id="message_sign"></div>
+                </div>
+            </div>
+            <div id="confirm_footer">
+                <div id="owner_key">
+                    <div class="input_container">
+                        <input type="password" placeholder="warning: OWNER KEY required" title="OWNER KEY must be directly applied to allow this DANGEROUS transaction!">
+                    </div>
+                    <div style="margin-top:-20px;font-size:0.75em;color:yellow;width:285px;text-align:center;"><b>Using OWNER KEY can lead to loss of account!</b></div>
+                </div>
+                <div class="keep_checkbox">
+                    <label for="keep" class="checkbox_container">
+                    <div id="keep_label"></div>
+                    <input id="keep" type="checkbox" />
+                    <span class="checkmark"/>
+                </label>
+                </div>
+                <button id="cancel">Cancel</button>
+                <button id="proceed">Confirm</button>
+            </div>
+        </div>
+    </div>
+    <script src="../vendor/jquery.js"></script>
+    <script src="../js/dialog.js"></script>
+</body>
+
+</html>

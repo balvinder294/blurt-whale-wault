@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>WhaleVault</title>
+    <link rel="stylesheet" type="text/css" href="../css/popup.css">
+</head>
+
+<body>
+    <div id="register">
+        <div style="height:45px;width:286px;font-family:arial;font-size:2.60em;text-align:center;">
+            <font color=lightblue><b>WHALE</b></font><font color=#7fd6d3>VAULT</font>
+        </div>
+        <div style="height:100px;width:286px;font-family:arial;font-size:1.15em;text-align:center;">
+            <font color="lightgray">Graphene Cross-Chain Key Store</font>
+        </div>
+        <p style="color:white;text-align:justify;">WhaleVault is a better, safer cross-chain way to access all your graphene accounts from the browser. 
+            <br><br>First off, you'll need a "Master Password", required 
+            to access any of your connected graphene accounts.<br/><br/>
+            <font color="yellow"><i>Warning:</i></font> WhaleVault is not meant to replace <b>permanent</b> out-of-browser cold storage such as the <b>KeePass Password Safe</b> 
+            (<a href="https://keepass.info"><font color="yellow">keepass.info</font></a>).</p>
+        <div class="input_container">
+            <input type="password" id="master_pwd" placeholder="New Password" />
+            <img src="../images/lock.png" class="input_img" />
+        </div>
+        <div class="input_container">
+            <input type="password" id="confirm_master_pwd" placeholder="Confirm" />
+            <img src="../images/lock.png" class="input_img" />
+        </div>
+        <button id="submit_master_pwd">Submit</button>
+        <div id="restore_btn" title="Restore from Backup">restore</div>
+        <input id="restore_file" type="file" accept=".dat" style="display:none;"></input>
+        <div style="float:right;margin-top:5px;"><a href="../html/terms.html" title="Terms of Service" style="text-decoration:none;color:white;" target="_blank">terms</a></div>
+    </div>
+    <div id="unlock">
+        <div style="height:45px;width:286px;font-family:arial;font-size:2.60em;text-align:center;">
+            <font color=lightblue><b>WHALE</b></font><font color=#7fd6d3>VAULT</font>
+        </div>
+        <div style="height:100px;width:286px;font-family:arial;font-size:1.15em;text-align:center;">
+            <font color="lightgray">Graphene Cross-Chain Key Store</font>
+        </div>
+        <p>WhaleVault is a better, safer cross-chain way to access all your graphene accounts from the browser.<br/><br/>
+        <font color="white"><i>Warning:</i> WhaleVault is not meant to replace <b>permanent</b> out-of-browser cold storage such as the <b>KeePass Password Safe</b> (keepass.info).</font></p>
+        <div class="input_container">
+            <input type="password" id="unlock_pwd" placeholder="Password" />
+            <img src="../images/lock.png" class="input_img" />
+            <img src="../images/hide.png" class="input_img_right_eye" />
+        </div>
+        <div class="input_container">
+            <button id="submit_unlock">Sign In</button>
+            <img src="../images/submit.png" class="input_img_right_submit" />
+        </div>
+        <a href="#" id="forgot">Forgot Password?</a>
+    </div>
+    <div id="forgot_div">
+        <div class="back_enabled" id="back_forgot">Reset accounts</div>
+        <p>If you forgot your password, you can clear your data.  HOWEVER, you will have to enter
+            all your keys and accounts again.</p>
+        <button>Confirm</button>
+    </div>
+    <div class="error_div"></div>
+    <div class="success_div"></div>
+    <div id="main">
+        <div class="main_header">
+            <img class="icon" src="../images/icons8-safe-out-50.png" title="Wallet is Unlocked!"/>
+            <span>
+              <div class="dash-button" id="gift" title="SHARE GIFT"></div>
+              <img src="../images/lock_wallet.png" id="lock" title="LOCK WALLET"/>
+              <img src="../images/squares.png" id="settings" title="SETTINGS"/>
+            </span>
+        </div>
+        <div class="custom-select custom-select-main usernames">
+            <select>
+            </select>
+        </div>
+        <div id="tx_log">
+        </div>
+    </div>
+    <div id="estimation_info">
+        <div class="back_menu back_enabled">account value</div>
+        <div>
+            The estimated account value is a ballpark idea of what your funds are worth in USD.<br><br>            Please note that the value does not take into account pending market
+            trades, transfers, or transactions.
+        </div>
+    </div>
+    <div id="acc_transfers">
+        <div class="back_menu back_enabled">Wallet History</div>
+        <div id="transfer_rows"></div>
+    </div>
+    <div id="add_account_div">
+        <div class="back_menu back_enabled">Set up</div>
+        <p>Enter the base chain and account name, and either <b>(1)</b> your master password, <b>OR (2)</b> the private
+            keys you wish to link to the account. Master passwords are 
+            used only to auto-generate your private keys, and are NOT SAVED.  
+            You may add or remove accounts or individual keys at any time.
+        </p>
+
+        <div class="input_container">
+            <select name="chains" id="chain" placeholder="Chain" title="Chain Short Code (ie. bts, stm, wls, eos)">
+                <option value="blt">Blurt (blt)</option>
+                <option value="bts">BitShares (bts)</option>
+                <option value="cyb">CyberWay (cyb)</option>
+                <option value="eos">Eos (eos)</option>
+                <option value="gls">Golos (gls)</option>
+                <option value="gph">Graphene (gph)</option>
+                <option value="hiv">Hive (hiv)</option>
+                <option value="ppy">Peerplays (ppy)</option>
+                <option value="scr">Scorum (scr)</option>
+                <option value="smk">Smoke (smk)</option>
+                <option value="stm">Steem (stm)</option>
+                <option value="tlo">Telos (tlo)</option>
+                <option value="usc">USCoin (usc)</option>
+                <option value="utx">UXNetwork (utx)</option>
+                <option value="vit">Vice (vit)</option>
+                <option value="wax">Wax (wax)</option>
+                <option value="wls">Whaleshares (wls)</option>
+                <option value="oth">Other (oth)</option>
+            </select>    
+            <img src="../images/chain.svg" class="input_img" />
+        </div>
+        <div class="input_container">
+            <input type="text" id="username" placeholder="Username" title="Chain AccountID"></input>
+            <img src="../images/arobase.png" class="input_img" />
+        </div>
+        <div class="input_container">
+            <input type="password" id="pwd_active" placeholder="Password / Active Key" title="Password or Active/Wallet Key"></input>
+            <img src="../images/key.png" class="input_img" />
+            <img id="key_view" src="../images/icons8-bunch-of-keys-1.png" class="key_view_img" height=24 width=24 title="Password KeyTool" />
+        </div>
+        <div class="input_container">
+            <input type="password" id="pwd_posting" placeholder="Posting / Social Key" title="Posting/Social Key"></input>
+            <img src="../images/key.png" class="input_img" />
+        </div>
+        <div class="input_container">
+            <input type="password" id="pwd_memo" placeholder="Memo Key"></input>
+            <img src="../images/key.png" class="input_img" />
+        </div>
+        <button id="check_add_account">Import keys</button>
+    </div>
+    <div id="master_check">
+        <div class="back_add_key back_enabled">Import Keys</div>
+        <p>Import successful! <br><br>Please select the Keys you wish to store with
+            WhaleVault:</p>
+        <div class="key_checkbox">
+            <label for="posting_key" class="checkbox_container">
+              <div>Posting/Social Key</div>
+              <div>For posting and voting</div>
+              <input type="checkbox" checked="checked" id="posting_key"/>
+              <span class="checkmark"/>
+            </label>
+        </div>
+        <div class="key_checkbox">
+            <label for="active_key" class="checkbox_container">
+            <div>Active/Wallet Key</div>
+            <div>For making transfers and orders</div>
+          <input type="checkbox" checked=true id="active_key"/>
+          <span class="checkmark"/>
+        </label>
+        </div>
+        <div class="key_checkbox">
+            <label for="memo_key" class="checkbox_container">
+            <div>Memo Key</div>
+            <div>For sending and reading memos</div>
+          <input type="checkbox" checked=true id="memo_key"/>
+          <span class="checkmark"/>
+        </label>
+        </div>
+        <button id="save_master">Save</button>
+    </div>
+    <div id="settings_div">
+        <div class="back_enabled back_menu">Settings</div>
+
+        <div class="setting_row" id="add_new_account">
+            <img src="../images/add_account.png" width=20 />
+            <span>Add Account</span>
+        </div>
+        <div class="setting_row" id="manage">
+            <img src="../images/accounts.png" width=20 />
+            <span>Manage Accounts</span>
+        </div>
+        <div class="setting_row" id="preferences">
+            <img src="../images/preferences.png" width=20 />
+            <span>Notification Preferences</span>
+        </div>
+        <div class="setting_row" id="autolock">
+            <img src="../images/autolock.png" width=20 />
+            <span>Auto Lock Vault</span>
+        </div>
+        <div class="setting_row" id="change_pwd">
+            <img src="../images/password.png" width=20 />
+            <span>Change Vault Password</span>
+        </div>
+        <div class="setting_row" id="backup">
+            <img src="../images/icons8-save-as-50.png" width=20 />
+            <span>Backup Vault</span>
+        </div>
+        <div class="setting_row" id="about">
+            <img src="../images/info.png" width=20 />
+            <span>About WhaleVault</span>
+        </div>
+        <div class="setting_row" id="clear">
+            <img src="../images/clear.png" width=20 />
+            <span>Clear All Data</span>
+        </div>
+    </div>
+    <div id="autolock_div" class="settings_child">
+        <div class="back_enabled back_pref">Auto Lock</div>
+        <div class="key_checkbox autolock">
+            <label for="default" class="checkbox_container">
+          <div>Default</div>
+          <div>Lock WhaleVault manually or when the browser is closed.</div>
+          <input type="checkbox" checked=true id="default"/>
+          <span class="checkmark"/>
+        </label>
+        </div>
+        <div class="key_checkbox autolock">
+            <label for="locked" class="checkbox_container">
+          <div>Device Lock</div>
+          <div>Auto-lock WhaleVault when the device locks.</div>
+          <input type="checkbox"  id="locked"/>
+          <span class="checkmark"/>
+        </label>
+        </div>
+        <div class="key_checkbox autolock">
+            <label for="idle" class="checkbox_container">
+          <div>Idle Lock</div>
+          <div>Auto-lock WhaleVault after the browser window is idle for the specified number of minutes.</div>
+          <input type="checkbox" id="idle"/>
+          <span class="checkmark"/>
+        </label>
+        </div>
+        <div class="input_container">
+            <input type="number" id="mn" placeholder="10"></input>
+        </div>
+        <button id="save_autolock">Save</button>
+    </div>
+    <div id="about_div" class="settings_child">
+        <div class="back_enabled back_pref">About</div>
+        <h3></h3>
+        <div class="about-content">WhaleVault is a multi-chain fork by @alexpmorris of the 
+            Steem Keychain browser extension.  Steem Keychain was originally created by <a href="https://steemit.com/@yabapmatt" target="_blank">@yabapmatt</a>,
+            developed by <a href="https://steemit.com/@stoodkev" target="_blank">@stoodkev</a>,
+            and funded by <a href="https://steemit.com/@aggroed" target="_blank">@aggroed</a>.
+            Many thanks to them for creating a great template upon which to build WhaleVault!<br/>
+            <br/>
+            <center>
+                <a href="../html/terms.html" target="_blank"><font color="yellow">Click for Terms of Service</font></a>
+                <br/><br/>
+                <a href id="show_alerts" style="color:yellow;">News & Alerts</a>
+            </center>
+        </div>
+    </div>
+    <div id="manage_keys" class="settings_child">
+        <div class="back_enabled back_pref">Manage Accounts</div>
+        <div class="custom-select usernames" id="custom_select_keys">
+            <select>
+          </select>
+        </div>
+        <div class="keys_info">
+            <img class="key_view_btn key_view_img" src="../images/icons8-bunch-of-keys-1.png" height=24 width=24 title="Copy Private Posting/Social Key to Clipboard" style="left:5px;" />
+            <span title="Medium Risk: Login, Posting/Social, Votes/Rewards, Claims">POSTING/Social KEY</span>
+            <span id="posting" class="remove_key">REMOVE</span>
+            <div class="private_key"></div>
+            <div class="public_key"></div>
+            <div class="img_add_key" data-key="posting"></div>
+        </div>
+        <div class="keys_info">
+            <img class="key_view_btn key_view_img" src="../images/icons8-bunch-of-keys-1.png" height=24 width=24 title="Copy Private Active/Wallet Key to Clipboard" style="left:5px;" />
+            <span style="color:yellow;" title="High Risk: Wallet Login, Transfers, Orders, Vesting">ACTIVE/Wallet KEY</span>
+            <span id="active" class="remove_key">REMOVE</span>
+            <div class="private_key"></div>
+            <div class="public_key"></div>
+            <div class="img_add_key" data-key="active"></div>
+        </div>
+        <div class="keys_info">
+            <img class="key_view_btn key_view_img" src="../images/icons8-bunch-of-keys-1.png" height=24 width=24 title="Copy Private Memo Key to Clipboard" style="left:5px;" />
+            <span title="Low Risk Key: Login, Signing Memos">MEMO KEY</span>
+            <span id="memo" class="remove_key">REMOVE</span>
+            <div class="private_key"></div>
+            <div class="public_key"></div>
+            <div class="img_add_key" data-key="memo"></div>
+        </div>
+        <button id="delete_account">DELETE THIS ACCOUNT</button>
+    </div>
+    <div id="pref_div" class="settings_child">
+        <div class="back_enabled back_pref" style="font-size: 18px;">Preferences</div>
+        <h3>Notification Preferences</h1>
+        <div class="custom-select usernames" id="custom_select_pref">
+            <select>
+            </select>
+        </div>
+        <div class="info">Select account to review and/or update pre-authorized scopes of authority.</div>
+        <div id="pref">No preferences</div>
+    </div>
+    <div id="add_rpc_div">
+        <div class="back_enabled">Add RPC</div>
+        <p>Add your RPC node here:</p>
+        <div class="input_container">
+            <input type="text" id="new_rpc" placeholder="RPC Node"></input>
+        </div>
+        <button id="add_new_rpc">Add RPC</button>
+        <div id="custom_rpc"></div>
+    </div>
+    <div id="add_key_div">
+        <div class="back_enabled">Add Key</div>
+        <p>Add a Private Key to your account:</p>
+        <div class="input_container">
+            <input type="password" id="new_key" placeholder="Private Key"></input>
+            <img src="../images/key.png" class="input_img" />
+        </div>
+        <button id="add_new_key">Import key</button>
+    </div>
+    <div id="copied">
+        <div>PublicKey Copied to Clipboard!</div>
+    </div>
+    <input id="fake_input" />
+    <div id="change_password" class="settings_child">
+        <div class="back_enabled back_pref">Change Password</div>
+        <p>Enter your old vault password for confirmation, then chose a new password.</p>
+        <div class="input_container">
+            <input type="password" id="old_pwd" placeholder="Old Password" />
+            <img src="../images/lock.png" class="input_img" />
+        </div>
+        <div class="input_container">
+            <input type="password" id="new_pwd" placeholder="New Password" />
+            <img src="../images/lock.png" class="input_img" />
+        </div>
+        <div class="input_container">
+            <input type="password" id="confirm_new_pwd" placeholder="Confirm" />
+            <img src="../images/lock.png" class="input_img" />
+        </div>
+        <button id="confirm_change_pwd">Confirm</button>
+    </div>
+    <div id="backup_div" class="settings_child">
+        <div class="back_enabled" id="back_backup">Backup</div>
+        <p>Backup your password-encrypted account data.  Other vault options and preferences are <b>not</b> saved.</p>
+        <button id="backup_btn">BACKUP</button>
+    </div>
+    <script src="../vendor/jquery.js"></script>
+    <script src="../vendor/whale-1.0.0.js"></script>
+    <script src="../js/encrypt.js"></script>
+    <script src="../js/popup/com.js"></script>
+    <script src="../js/popup/rpc.js"></script>
+    <script src="../js/popup/accounts.js"></script>
+    <script src="../js/popup/utils.js"></script>
+    <script src="../js/popup/navigation.js"></script>
+    <script src="../js/popup/settings.js"></script>
+    <script src="../js/popup/popup.js"></script>
+</body>
+
+</html>
