@@ -263,6 +263,6 @@ function wv_set_polyfill(wallet_name, use_cid, use_url) {
 setTimeout(function() {
     wv_set_polyfill('steem_keychain', 'stm', 'https://api.steemit.com');
     wv_set_polyfill('hive_keychain', 'hiv', 'https://api.openhive.network');
-    wv_set_polyfill('blurt_keychain', 'blt', 'https://rpc.blurtlatam.com');
+    wv_set_polyfill('blurt_keychain', 'blt', 'https://rpc.blurt.live');
     wv_set_polyfill = undefined;
 }, 500);

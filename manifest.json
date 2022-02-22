@@ -1,12 +1,12 @@
 {
-  "name": "Blurt WhaleVault",
-  "version": "0.1.1",
+  "name": "Blurt WhaleVault With LIVE RPC",
+  "version": "0.1.2",
   "description": "Blurt Key Chain Extension",
   "permissions": ["activeTab", "storage", "tabs", "https://*/*", "notifications", "idle"],
   "browser_action": {
     "default_popup": "html/popup.html",
     "default_icon": "images/blurtlogo.png",
-    "default_title": "Blurt WhaleVault :: locked"
+    "default_title": "Blurt WhaleVault Live:: locked"
   },
   "icons": {                   
     "128": "images/blurtlogo.png"
